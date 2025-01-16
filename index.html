@@ -6,42 +6,15 @@
     <title>Firehouse</title>
 </head>
 <body>
-    <h1>Welcome to Firehouse!</h1>
-    <form id="submission-form">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required><br><br>
-
+    <h1>Welcome to Firehouse</h1>
+    <form action="/submit" method="post">
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
-
+        <input type="email" id="email" name="email" required>
+        <br>
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br><br>
-
-        <label for="photo">Upload Photo:</label>
-        <input type="file" id="photo" name="photo" accept="image/*" required><br><br>
-
+        <input type="password" id="password" name="password" required>
+        <br>
         <button type="submit">Submit</button>
     </form>
-
-    <script>
-        // Handle form submission
-        document.getElementById('submission-form').addEventListener('submit', async (event) => {
-            event.preventDefault(); // Prevent form from refreshing the page
-
-            // Collect form data
-            const formData = new FormData(event.target);
-            const data = {
-                name: formData.get('name'),
-                email: formData.get('email'),
-                password: formData.get('password'),
-                photo: formData.get('photo').name, // Save only the file name for simplicity
-            };
-
-            console.log('Form Data Submitted:', data);
-
-            // Save data (for now, just log it or save it to a backend later)
-            alert('Your data has been submitted!');
-        });
-    </script>
 </body>
 </html>
