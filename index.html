@@ -3,107 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Firehouse Voting</title>
+    <title>Firehouse Voting System</title>
     <style>
         body {
             margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f5f5f7;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
             color: #333;
+            overflow-x: hidden;
         }
-
-        header {
-            background-color: #ffffff;
-            padding: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+        .cursor {
+            position: fixed;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.7);
+            pointer-events: none;
+            transition: transform 0.1s ease;
         }
-
-        header h1 {
-            margin: 0;
-            font-size: 1.5rem;
-            text-align: center;
-        }
-
         .container {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        .card {
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            overflow: hidden;
-            transition: transform 0.2s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card img {
-            width: 100%;
-            display: block;
-        }
-
-        .card-content {
-            padding: 20px;
             text-align: center;
+            padding: 50px;
         }
-
-        .vote-button {
-            background-color: #007aff;
-            color: #fff;
+        .button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            background: #007bff;
+            color: white;
             border: none;
             border-radius: 5px;
-            padding: 10px 20px;
             cursor: pointer;
-            font-size: 1rem;
-            margin: 10px 0;
         }
-
-        .vote-button:hover {
-            background-color: #005bb5;
+        .button:hover {
+            background: #0056b3;
         }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            font-size: 0.9rem;
-            color: #888;
+        .contestant {
+            display: inline-block;
+            width: 200px;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background: white;
+        }
+        .profile {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Firehouse Voting</h1>
-    </header>
-
-    <div class="container">
-        <div class="card">
-            <img src="https://via.placeholder.com/800x400" alt="Contestant">
-            <div class="card-content">
-                <h2>Contestant Name</h2>
-                <button class="vote-button">Vote</button>
-            </div>
+    <div class="cursor" id="cursor"></div>
+    <div class="container" id="main-page" style="display:none;">
+        <h1>Firehouse Voting System</h1>
+        <div id="profile" class="profile" style="display:none;">
+            <p id="user-info"></p>
+            <button class="button" onclick="editProfile()">Edit Profile</button>
         </div>
-
-        <div class="card">
-            <img src="https://via.placeholder.com/800x400" alt="Contestant">
-            <div class="card-content">
-                <h2>Contestant Name</h2>
-                <button class="vote-button">Vote</button>
-            </div>
-        </div>
+        <div id="contestants"></div>
     </div>
 
-    <footer>
-        <p>&copy; 2025 Firehouse. All rights reserved.</p>
-    </footer>
+    <div class="container" id="auth-page">
+        <h1>Welcome to Firehouse</h1>
+        <button class="button" onclick="showLogin()">Login</button>
+        <button class="button" onclick="showRegister()">Register</button>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js"></script>
+    <script>
+        // Firebase Config
+        const firebaseConfig = {
+            apiKey: "AIzaSyBkKCZ3_HwSvQ8cDdFFFluLf9xfOTam6zA",
+            authDomain: "fir-v2-94547.firebaseapp.com",
+            databaseURL: "https://fir-v2-94547-default-rtdb.firebaseio.com",
+            projectId: "fir-v2-94547",
+            storageBucket: "fir-v2-94547.appspot.com",
+            messagingSenderId: "278291647644",
+            appId: "1:278291647644:web:501e6647610ab2963ef159",
+            measurementId: "G-YXXPHX4GTV"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const database = firebase.database();
+
+        // Cursor Animation
+        const cursor = document.getElementById("cursor");
+        document.addEventListener("mousemove", (e) => {
+            cursor.style.left = `${e.pageX}px`;
+            cursor.style.top = `${e.pageY}px`;
+            cursor.style.transform = "scale(1.5)";
+            setTimeout(() => (cursor.style.transform = "scale(1)"), 100);
+        });
+
+        // Redirect to Main Page after Login/Signup
+        function redirectToMainPage(user) {
+            document.getElementById("auth-page").style.display = "none";
+            document.getElementById("main-page").style.display = "block";
+            const profileDiv = document.getElementById("profile");
+            const userInfo = document.getElementById("user-info");
+
+            if (user.email === "admin@example.com") { // Replace with your admin email
+                userInfo.innerText = `Admin: ${user.email}`;
+                profileDiv.style.display = "block";
+            } else {
+                userInfo.innerText = `Logged in as: ${user.email}`;
+                profileDiv.style.display = "block";
+            }
+
+            loadContestants();
+        }
+
+        // Display Contestants
+        const contestantsDiv = document.getElementById("contestants");
+        function loadContestants() {
+            database.ref("contestants").on("value", (snapshot) => {
+                const data = snapshot.val();
+                contestantsDiv.innerHTML = "";
+                for (const id in data) {
+                    const contestant = data[id];
+                    contestantsDiv.innerHTML += `
+                        <div class="contestant">
+                            <p>${contestant.name}</p>
+                            <button class="button" onclick="vote('${id}')">Vote</button>
+                        </div>`;
+                }
+            });
+        }
+
+        // Voting Functionality
+        function vote(id) {
+            database.ref(`contestants/${id}/votes`).transaction((currentVotes) => {
+                return (currentVotes || 0) + 1;
+            });
+        }
+
+        // Login and Register Flow
+        function showLogin() {
+            const email = prompt("Enter your email:");
+            const password = prompt("Enter your password:");
+            auth.signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    redirectToMainPage(userCredential.user);
+                })
+                .catch((error) => alert(error.message));
+        }
+
+        function showRegister() {
+            const email = prompt("Enter your email:");
+            const password = prompt("Enter your password:");
+            auth.createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    redirectToMainPage(userCredential.user);
+                })
+                .catch((error) => alert(error.message));
+        }
+
+        // Edit Profile (Placeholder for now)
+        function editProfile() {
+            alert("Edit Profile feature coming soon!");
+        }
+
+        // Check Auth State
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                redirectToMainPage(user);
+            }
+        });
+    </script>
 </body>
 </html>

@@ -1,0 +1,45 @@
+[debug] [2025-01-17T19:25:30.516Z] ----------------------------------------------------------------------
+[debug] [2025-01-17T19:25:30.517Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2025-01-17T19:25:30.517Z] CLI Version:   13.29.1
+[debug] [2025-01-17T19:25:30.517Z] Platform:      darwin
+[debug] [2025-01-17T19:25:30.517Z] Node Version:  v22.13.0
+[debug] [2025-01-17T19:25:30.517Z] Time:          Fri Jan 17 2025 11:25:30 GMT-0800 (Pacific Standard Time)
+[debug] [2025-01-17T19:25:30.517Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-01-17T19:25:30.552Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-01-17T19:25:30.552Z] > authorizing via signed-in user (kevinjames15243@gmail.com)
+[debug] [2025-01-17T19:25:30.552Z] [iam] checking project firehouse-f4b5f for permissions ["firebase.projects.get"]
+[debug] [2025-01-17T19:25:30.552Z] Checked if tokens are valid: true, expires at: 1737143726104
+[debug] [2025-01-17T19:25:30.552Z] Checked if tokens are valid: true, expires at: 1737143726104
+[debug] [2025-01-17T19:25:30.553Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/firehouse-f4b5f:testIamPermissions [none]
+[debug] [2025-01-17T19:25:30.553Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/firehouse-f4b5f:testIamPermissions x-goog-quota-user=projects/firehouse-f4b5f
+[debug] [2025-01-17T19:25:30.553Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/firehouse-f4b5f:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2025-01-17T19:25:30.683Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/firehouse-f4b5f:testIamPermissions 200
+[debug] [2025-01-17T19:25:30.683Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/firehouse-f4b5f:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2025-01-17T19:25:30.683Z] Checked if tokens are valid: true, expires at: 1737143726104
+[debug] [2025-01-17T19:25:30.683Z] Checked if tokens are valid: true, expires at: 1737143726104
+[debug] [2025-01-17T19:25:30.683Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/firehouse-f4b5f [none]
+[debug] [2025-01-17T19:25:30.843Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/firehouse-f4b5f 200
+[debug] [2025-01-17T19:25:30.844Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/firehouse-f4b5f {"projectNumber":"888628186008","projectId":"firehouse-f4b5f","lifecycleState":"ACTIVE","name":"Firehouse","labels":{"firebase":"enabled","firebase-core":"disabled"},"createTime":"2025-01-17T01:50:29.095032Z"}
+[info] 
+[info] === Serving from '/Users/copper/Documents/school-voting-app'...
+[info] 
+[debug] [2025-01-17T19:25:30.846Z] Checked if tokens are valid: true, expires at: 1737143726104
+[debug] [2025-01-17T19:25:30.847Z] Checked if tokens are valid: true, expires at: 1737143726104
+[debug] [2025-01-17T19:25:30.847Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/firehouse-f4b5f/sites 
+[debug] [2025-01-17T19:25:31.549Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/firehouse-f4b5f/sites 200
+[debug] [2025-01-17T19:25:31.550Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/firehouse-f4b5f/sites {"sites":[{"name":"projects/firehouse-f4b5f/sites/firehouse-f4b5f","defaultUrl":"https://firehouse-f4b5f.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2025-01-17T19:25:31.550Z] Checked if tokens are valid: true, expires at: 1737143726104
+[debug] [2025-01-17T19:25:31.550Z] Checked if tokens are valid: true, expires at: 1737143726104
+[debug] [2025-01-17T19:25:31.550Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/firehouse-f4b5f/webApps/-/config [none]
+[debug] [2025-01-17T19:25:32.207Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/firehouse-f4b5f/webApps/-/config 200
+[debug] [2025-01-17T19:25:32.207Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/firehouse-f4b5f/webApps/-/config {"projectId":"firehouse-f4b5f","appId":"1:888628186008:web:5a12664bb17ca217beb9ed","storageBucket":"firehouse-f4b5f.firebasestorage.app","apiKey":"AIzaSyDIo3HLwxWhKEX-i_QVVE0-uDeLTbkTbnQ","authDomain":"firehouse-f4b5f.firebaseapp.com","messagingSenderId":"888628186008","measurementId":"G-B6JTMEPRB3"}
+[debug] [2025-01-17T19:25:32.217Z] Checked if tokens are valid: true, expires at: 1737143726104
+[debug] [2025-01-17T19:25:32.217Z] Checked if tokens are valid: true, expires at: 1737143726104
+[debug] [2025-01-17T19:25:32.218Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/firehouse-f4b5f [none]
+[debug] [2025-01-17T19:25:32.336Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/firehouse-f4b5f 200
+[debug] [2025-01-17T19:25:32.336Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/firehouse-f4b5f {"projectId":"firehouse-f4b5f","projectNumber":"888628186008","displayName":"Firehouse","name":"projects/firehouse-f4b5f","resources":{"hostingSite":"firehouse-f4b5f"},"state":"ACTIVE","etag":"1_3b71000c-9e11-4dae-aee6-1101474655ef"}
+[info] i  hosting[firehouse-f4b5f]: Serving hosting files from: public {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mpublic\u001b[22m"}}
+[info] ✔  hosting[firehouse-f4b5f]: Local server: http://localhost:5002 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://localhost:5002\u001b[22m\u001b[24m"}}
+[info] i  hosting: ::1 - - [17/Jan/2025:19:25:37 +0000] "GET / HTTP/1.1" 200 - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Safari/605.1.15" {"metadata":{"emulator":{"name":"hosting"},"message":"::1 - - [17/Jan/2025:19:25:37 +0000] \"GET / HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Safari/605.1.15\""}}
+[info] i  hosting: ::1 - - [17/Jan/2025:19:25:37 +0000] "GET /favicon.ico HTTP/1.1" 304 - "http://localhost:5002/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Safari/605.1.15" {"metadata":{"emulator":{"name":"hosting"},"message":"::1 - - [17/Jan/2025:19:25:37 +0000] \"GET /favicon.ico HTTP/1.1\" 304 - \"http://localhost:5002/\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Safari/605.1.15\""}}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Firehouse - Voting</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+    }
+    .vs-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 50px;
+    }
+    .photo-container {
+      margin: 20px;
+    }
+    .photo-container img {
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+    }
+    .vs {
+      font-size: 2rem;
+      margin: 0 20px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      margin-top: 20px;
+      cursor: pointer;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h2>Vote for Your Favorite!</h2>
+  <div class="vs-section">
+    <div class="photo-container">
+      <img src="photo1.jpg" alt="Photo 1">
+      <button id="vote-photo1">Vote for Photo 1</button>
+    </div>
+    <div class="vs">VS</div>
+    <div class="photo-container">
+      <img src="photo2.jpg" alt="Photo 2">
+      <button id="vote-photo2">Vote for Photo 2</button>
+    </div>
+  </div>
+  <script>
+    document.getElementById('vote-photo1').addEventListener('click', () => {
+      alert('You voted for Photo 1!');
+    });
+
+    document.getElementById('vote-photo2').addEventListener('click', () => {
+      alert('You voted for Photo 2!');
+    });
+  </script>
+</body>
+</html>
